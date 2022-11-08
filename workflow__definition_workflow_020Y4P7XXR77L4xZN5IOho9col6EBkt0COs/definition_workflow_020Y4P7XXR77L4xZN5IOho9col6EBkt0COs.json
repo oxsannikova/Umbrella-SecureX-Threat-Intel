@@ -46,27 +46,27 @@
       {
         "schema_id": "datatype.string",
         "properties": {
-          "value": "OpenPhish URL Block List",
+          "value": "{\"destinations\":[]}",
           "scope": "local",
-          "name": "Umbrella Destination List Name",
+          "name": "Umbrella Full List",
           "type": "datatype.string",
           "is_required": false,
           "is_invisible": false
         },
-        "unique_name": "variable_workflow_020Y6CTDZ1O1G6fiIcDFXIDEgMQfe49m8Bm",
+        "unique_name": "variable_workflow_020ZVPN3NK6WN7VkLCbOhjc8T8vcbHGAxyr",
         "object_type": "variable_workflow"
       },
       {
         "schema_id": "datatype.string",
         "properties": {
-          "value": "",
-          "scope": "local",
-          "name": "Private Intel Group Id",
+          "value": "Umbrella SECUREX TEST",
+          "scope": "input",
+          "name": "Indicator-Feed Name",
           "type": "datatype.string",
-          "is_required": false,
+          "is_required": true,
           "is_invisible": false
         },
-        "unique_name": "variable_workflow_020Y4P7Y84UUF7dPuOqsFyCPTmuDWSR2r6D",
+        "unique_name": "variable_workflow_020Y4P7Y84GDP5WLUyBaugzUBfMVu1GlsFy",
         "object_type": "variable_workflow"
       },
       {
@@ -98,28 +98,14 @@
       {
         "schema_id": "datatype.string",
         "properties": {
-          "value": "SecureX Orchestration OpenPhish Observables",
-          "scope": "input",
-          "name": "Indicator-Feed Name",
-          "type": "datatype.string",
-          "is_required": true,
-          "is_invisible": false
-        },
-        "unique_name": "variable_workflow_020Y4P7Y84GDP5WLUyBaugzUBfMVu1GlsFy",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "[]",
+          "value": "SecureX TEST DST",
           "scope": "local",
-          "name": "Destinations to add",
+          "name": "Umbrella Destination List Name",
           "type": "datatype.string",
-          "description": "List of destinations to add to SecureX threat feed",
           "is_required": false,
           "is_invisible": false
         },
-        "unique_name": "variable_workflow_020Y8VGTQJKJ47JXUajlMPhUCpCnhaP1Lki",
+        "unique_name": "variable_workflow_020Y6CTDZ1O1G6fiIcDFXIDEgMQfe49m8Bm",
         "object_type": "variable_workflow"
       },
       {
@@ -127,12 +113,12 @@
         "properties": {
           "value": "",
           "scope": "local",
-          "name": "Umbrella Full List",
+          "name": "Private Intel Group Id",
           "type": "datatype.string",
           "is_required": false,
           "is_invisible": false
         },
-        "unique_name": "variable_workflow_020ZVPN3NK6WN7VkLCbOhjc8T8vcbHGAxyr",
+        "unique_name": "variable_workflow_020Y4P7Y84UUF7dPuOqsFyCPTmuDWSR2r6D",
         "object_type": "variable_workflow"
       }
     ],
@@ -521,25 +507,6 @@
             "object_type": "definition_activity"
           },
           {
-            "unique_name": "definition_activity_020Y62YRXCDJ61c5vp7cubeNArDwSM3p1Fb",
-            "name": "Set Variables",
-            "title": "Update Feed Details Variable",
-            "type": "core.set_multiple_variables",
-            "base_type": "activity",
-            "properties": {
-              "continue_on_failure": false,
-              "display_name": "Update Feed Details Variable",
-              "skip_execution": false,
-              "variables_to_update": [
-                {
-                  "variable_to_update": "$workflow.definition_workflow_020Y4P7XXR77L4xZN5IOho9col6EBkt0COs.local.variable_workflow_020Y62SMOXCHA4qBtbzlO4QyDznerSuDbpB$",
-                  "variable_value_new": "$activity.definition_activity_020Y4P8YGHP7Z3xHZDPcqmMJQt680Jt5ayG.output.jsonpath_queries.feed_details$"
-                }
-              ]
-            },
-            "object_type": "definition_activity"
-          },
-          {
             "unique_name": "definition_activity_020Y4P8ZL2LKU2MEnvu2aZJy9rEBgQTa8ks",
             "name": "Condition Block",
             "title": "If Feed exists",
@@ -555,7 +522,7 @@
               {
                 "unique_name": "definition_activity_020Y4P90JFQF21cX0OE6cm8qEJLeK0hzCoL",
                 "name": "Condition Branch",
-                "title": "Fails",
+                "title": "No",
                 "type": "logic.condition_block",
                 "base_type": "activity",
                 "properties": {
@@ -565,7 +532,7 @@
                     "right_operand": false
                   },
                   "continue_on_failure": false,
-                  "display_name": "Fails",
+                  "display_name": "No",
                   "skip_execution": false
                 },
                 "object_type": "definition_activity",
@@ -612,6 +579,45 @@
                         {
                           "variable_to_update": "$workflow.definition_workflow_020Y4P7XXR77L4xZN5IOho9col6EBkt0COs.local.variable_workflow_020Y62SMOXCHA4qBtbzlO4QyDznerSuDbpB$",
                           "variable_value_new": "$activity.definition_activity_020Y4P922JRTQ1TQSkHGntlYAA3OajvL2La.output.response_body$"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              },
+              {
+                "unique_name": "definition_activity_021A7A5VG1YHW20Dr3Pr5cuyAfI7ToSzBW4",
+                "name": "Condition Branch",
+                "title": "Yes",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": "$activity.definition_activity_020Y4P8YGHP7Z3xHZDPcqmMJQt680Jt5ayG.output.succeeded$",
+                    "operator": "eq",
+                    "right_operand": true
+                  },
+                  "continue_on_failure": false,
+                  "display_name": "Yes",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_020Y62YRXCDJ61c5vp7cubeNArDwSM3p1Fb",
+                    "name": "Set Variables",
+                    "title": "Update Feed Details Variable",
+                    "type": "core.set_multiple_variables",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Update Feed Details Variable",
+                      "skip_execution": false,
+                      "variables_to_update": [
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_020Y4P7XXR77L4xZN5IOho9col6EBkt0COs.local.variable_workflow_020Y62SMOXCHA4qBtbzlO4QyDznerSuDbpB$",
+                          "variable_value_new": "$activity.definition_activity_020Y4P8YGHP7Z3xHZDPcqmMJQt680Jt5ayG.output.jsonpath_queries.feed_details$"
                         }
                       ]
                     },
@@ -920,23 +926,23 @@
                   {
                     "unique_name": "definition_activity_020Y73HEHBUGC0E4dwrMcqgGwTzrJUD9b3X",
                     "name": "Execute Python Script",
-                    "title": "Execute Python Script",
+                    "title": "Append Destinations",
                     "type": "python3.script",
                     "base_type": "activity",
                     "properties": {
                       "action_timeout": 180,
                       "continue_on_failure": false,
-                      "display_name": "Execute Python Script",
-                      "script": "import sys,json\n\ndsts_to_add = json.loads(sys.argv[3])\n\numbrella_dsts = json.loads(sys.argv[1])\n#securex_entries = json.loads(sys.argv[2])\nsecurex_entries = sys.argv[2]\n\nfor dst in umbrella_dsts[\"data\"]:\n    if dst[\"destination\"] not in securex_entries:\n        dsts_to_add.append({\"observable\":dst[\"destination\"]})\n\noutput = json.dumps(dsts_to_add)",
+                      "description": "Append Destinations from current page to full list",
+                      "display_name": "Append Destinations",
+                      "script": "import sys,json\n\ndsts_full_list = json.loads(sys.argv[2])\n\numbrella_dsts = json.loads(sys.argv[1])\n#securex_entries = json.loads(sys.argv[2])\n#securex_entries = sys.argv[2]\n\nfor dst in umbrella_dsts[\"data\"]:\n#    if dst[\"destination\"] not in securex_entries:\n#        dsts_to_add.append({\"observable\":dst[\"destination\"]})\n    dsts_full_list['destinations'].append(dst[\"destination\"])\n\noutput = json.dumps(dsts_full_list)",
                       "script_arguments": [
                         "$activity.definition_activity_020Y706I6IMP24ReMINKuZ3xIPDFvffRXzo.output.variable_workflow_0204H5ZVW92084NZUJtoVJXPlPD7KpEcX8K$",
-                        "$activity.definition_activity_020Y62DBQ4B983K2Pc45C0zIyollrGKAyAR.output.variable_workflow_020Y5SHUEGY0P2AGgu2eIpxxpLZNxth4P1I$",
-                        "$workflow.definition_workflow_020Y4P7XXR77L4xZN5IOho9col6EBkt0COs.local.variable_workflow_020Y8VGTQJKJ47JXUajlMPhUCpCnhaP1Lki$"
+                        "$workflow.definition_workflow_020Y4P7XXR77L4xZN5IOho9col6EBkt0COs.local.variable_workflow_020ZVPN3NK6WN7VkLCbOhjc8T8vcbHGAxyr$"
                       ],
                       "script_queries": [
                         {
                           "script_query": "output",
-                          "script_query_name": "dsts_to_add",
+                          "script_query_name": "dsts_full_list",
                           "script_query_type": "string"
                         }
                       ],
@@ -947,17 +953,17 @@
                   {
                     "unique_name": "definition_activity_020Y8WJTXRZ7T34XYkwaI0paKNm22wj4gtb",
                     "name": "Set Variables",
-                    "title": "Set Variables",
+                    "title": "Update Umbrella Full List Variable",
                     "type": "core.set_multiple_variables",
                     "base_type": "activity",
                     "properties": {
                       "continue_on_failure": false,
-                      "display_name": "Set Variables",
+                      "display_name": "Update Umbrella Full List Variable",
                       "skip_execution": false,
                       "variables_to_update": [
                         {
-                          "variable_to_update": "$workflow.definition_workflow_020Y4P7XXR77L4xZN5IOho9col6EBkt0COs.local.variable_workflow_020Y8VGTQJKJ47JXUajlMPhUCpCnhaP1Lki$",
-                          "variable_value_new": "$activity.definition_activity_020Y73HEHBUGC0E4dwrMcqgGwTzrJUD9b3X.output.script_queries.dsts_to_add$"
+                          "variable_to_update": "$workflow.definition_workflow_020Y4P7XXR77L4xZN5IOho9col6EBkt0COs.local.variable_workflow_020ZVPN3NK6WN7VkLCbOhjc8T8vcbHGAxyr$",
+                          "variable_value_new": "$activity.definition_activity_020Y73HEHBUGC0E4dwrMcqgGwTzrJUD9b3X.output.script_queries.dsts_full_list$"
                         }
                       ]
                     },
@@ -998,10 +1004,10 @@
           "action_timeout": 180,
           "continue_on_failure": false,
           "display_name": "Execute Python Script",
-          "script": "import sys, json\n\nfeed_entries = json.loads(sys.argv[1])\numbrella_dsts = json.loads(sys.argv[2])\n\numbrella_values = []\nfor entry in umbrella_dsts:\n    umbrella_values.append(entry[\"observable\"])\n\nfeed_values = []\nfor entry in feed_entries[\"observables\"]:\n    feed_values.append(entry[\"value\"])\n\ns1 = set(feed_values)\nadd_to_feed = [{\"observable\":dst} for dst in umbrella_values if dst not in s1]\n\ns2 = set(umbrella_values)\nremove_from_feed = [{\"observable\":obs} for obs in feed_values if obs not in s2]\n\nadd_output = json.dumps(add_to_feed)\nremove_output = json.dumps(remove_from_feed)",
+          "script": "import sys, json\n\nfeed_entries = json.loads(sys.argv[1])\numbrella_dsts = json.loads(sys.argv[2])\n\nfeed_values = []\nfor entry in feed_entries[\"observables\"]:\n    feed_values.append(entry[\"value\"])\n\n#umbrella_values = []\n#for entry in umbrella_dsts[\"destinations\"]:\n#    umbrella_values.append(entry[\"observable\"])\numbrella_values = umbrella_dsts[\"destinations\"]\n\nfeed_set = set(feed_values)\n#add_to_feed = [{\"observable\":dst} for dst in umbrella_values if dst not in s1]\numbrella_set = set(umbrella_values)\n#remove_from_feed = [{\"observable\":obs} for obs in feed_values if obs not in s2]\nadd_to_feed = list(umbrella_set.difference(feed_set))\nremove_from_feed = list(feed_set.difference(umbrella_set))\n\nadd_output = json.dumps([{\"destination\": x} for x in add_to_feed])\nremove_output = json.dumps([{\"observable\": x} for x in remove_from_feed])",
           "script_arguments": [
             "$activity.definition_activity_020Y62DBQ4B983K2Pc45C0zIyollrGKAyAR.output.variable_workflow_020Y5SHUEGY0P2AGgu2eIpxxpLZNxth4P1I$",
-            "$workflow.definition_workflow_020Y4P7XXR77L4xZN5IOho9col6EBkt0COs.local.variable_workflow_020Y8VGTQJKJ47JXUajlMPhUCpCnhaP1Lki$"
+            "$workflow.definition_workflow_020Y4P7XXR77L4xZN5IOho9col6EBkt0COs.local.variable_workflow_020ZVPN3NK6WN7VkLCbOhjc8T8vcbHGAxyr$"
           ],
           "script_queries": [
             {
@@ -1036,7 +1042,7 @@
           "skip_execution": false,
           "table_columns": [
             {
-              "column_name": "observable",
+              "column_name": "destination",
               "column_type": "string"
             }
           ]
@@ -1072,7 +1078,7 @@
                 "variable_workflow_0209O0384IXUQ7WwqdPNR1Zna8LRAFGdU7s": "Medium",
                 "variable_workflow_0209O0384J4RY1pUk1w4FxSOBSUFWIlJUoj": "Malicious",
                 "variable_workflow_0209O0384JBJL1zGw1LokdAPOSFqmINazjY": "high",
-                "variable_workflow_0209O0384JIHT4rTbO3zWHGTKaAyePU8nZr": "$activity.definition_activity_020Y4P999GB7363Y3TUfFErEiHndtOELY4L.input.source_array[@].observable$",
+                "variable_workflow_0209O0384JIHT4rTbO3zWHGTKaAyePU8nZr": "$activity.definition_activity_020Y4P999GB7363Y3TUfFErEiHndtOELY4L.input.source_array[@].destination$",
                 "variable_workflow_0209O0384JQEL6YwGc04mAwjV6eXbmvkTOm": "url",
                 "variable_workflow_0209O0384JY6T1BgZioCCeLZ9HfuaP18HGa": "amber",
                 "variable_workflow_0209O0384KP9D3v8WbEmUK4xhOant7WOfS3": 3650,
@@ -1356,41 +1362,6 @@
     "categories": [
       "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
     ]
-  },
-  "triggers": {
-    "triggerschedule_02114C3G9UVE54GPt75krKvtujdjigxOBQW": {
-      "workflow_id": "definition_workflow_020Y4P7XXR77L4xZN5IOho9col6EBkt0COs",
-      "name": "Every Day",
-      "title": "",
-      "lowercase_name": "schedule.every_day",
-      "type": "schedule",
-      "base_type": "trigger",
-      "ref_id": "schedule_01JRJSN5TREBT730gJxpaNNI0ttodAs2oS1",
-      "version": "1.0.0",
-      "disabled": false,
-      "unique_name": "triggerschedule_02114C3G9UVE54GPt75krKvtujdjigxOBQW",
-      "object_type": "triggerschedule"
-    }
-  },
-  "schedules": {
-    "schedule_01JRJSN5TREBT730gJxpaNNI0ttodAs2oS1": {
-      "unique_name": "schedule_01JRJSN5TREBT730gJxpaNNI0ttodAs2oS1",
-      "name": "Every Day",
-      "type": "basic.schedule",
-      "base_type": "schedule",
-      "properties": {
-        "calendar": "calendar_recurring_1BMfMWvgiDhSjBQ7hTSyvz3NyVZ",
-        "timezone": "Etc/GMT+0",
-        "starttime": "07:00",
-        "interval_hours": 0,
-        "interval_minutes": 0,
-        "number_of_times": 1,
-        "display_name": "Every Day",
-        "description": ""
-      },
-      "version": "1.0.0",
-      "object_type": "schedule"
-    }
   },
   "targets": {
     "definition_target_01K5COU2P4BJ93qEsN20qTZ7JxYaSsM3m36": {
@@ -1741,66 +1712,27 @@
           {
             "schema_id": "datatype.string",
             "properties": {
-              "value": "",
+              "value": "high",
               "scope": "input",
-              "name": "disposition_name",
+              "name": "confidence",
               "type": "datatype.string",
-              "is_required": true,
+              "is_required": false,
               "is_invisible": false
             },
-            "unique_name": "variable_workflow_0209O0384J4RY1pUk1w4FxSOBSUFWIlJUoj",
+            "unique_name": "variable_workflow_0209O0384JBJL1zGw1LokdAPOSFqmINazjY",
             "object_type": "variable_workflow"
           },
           {
-            "schema_id": "datatype.date",
+            "schema_id": "datatype.integer",
             "properties": {
-              "value": "0001-01-01T00:00:00+00:00",
+              "value": 0,
               "scope": "local",
-              "name": "Timestamp",
-              "type": "datatype.date",
+              "name": "disposition",
+              "type": "datatype.integer",
               "is_required": false,
               "is_invisible": false
             },
-            "unique_name": "variable_workflow_0209O0384KHD80O3Ya4xHrildFfagV0wMMN",
-            "object_type": "variable_workflow"
-          },
-          {
-            "schema_id": "datatype.string",
-            "properties": {
-              "value": "white",
-              "scope": "input",
-              "name": "tlp",
-              "type": "datatype.string",
-              "is_required": false,
-              "is_invisible": false
-            },
-            "unique_name": "variable_workflow_0209O0384JY6T1BgZioCCeLZ9HfuaP18HGa",
-            "object_type": "variable_workflow"
-          },
-          {
-            "schema_id": "datatype.string",
-            "properties": {
-              "value": "",
-              "scope": "input",
-              "name": "private_intel_group",
-              "type": "datatype.string",
-              "is_required": true,
-              "is_invisible": false
-            },
-            "unique_name": "variable_workflow_0209O0384IBIP7FLf8uNmcBdz2dAHDxFKEC",
-            "object_type": "variable_workflow"
-          },
-          {
-            "schema_id": "datatype.string",
-            "properties": {
-              "value": "",
-              "scope": "output",
-              "name": "Output JSON",
-              "type": "datatype.string",
-              "is_required": false,
-              "is_invisible": false
-            },
-            "unique_name": "variable_workflow_0209O0384K9L92OSO0hqZtY7OBLiWJhjrsc",
+            "unique_name": "variable_workflow_0209O0384L2HL79MKMU0X77dYaFIFrtDckP",
             "object_type": "variable_workflow"
           },
           {
@@ -1820,13 +1752,13 @@
             "schema_id": "datatype.string",
             "properties": {
               "value": "",
-              "scope": "input",
-              "name": "observable_type",
+              "scope": "output",
+              "name": "Output JSON",
               "type": "datatype.string",
-              "is_required": true,
+              "is_required": false,
               "is_invisible": false
             },
-            "unique_name": "variable_workflow_0209O0384JQEL6YwGc04mAwjV6eXbmvkTOm",
+            "unique_name": "variable_workflow_0209O0384K9L92OSO0hqZtY7OBLiWJhjrsc",
             "object_type": "variable_workflow"
           },
           {
@@ -1840,45 +1772,6 @@
               "is_invisible": false
             },
             "unique_name": "variable_workflow_0209O0384KW391cs7RmT8lulazuO19snQTX",
-            "object_type": "variable_workflow"
-          },
-          {
-            "schema_id": "datatype.integer",
-            "properties": {
-              "value": 0,
-              "scope": "local",
-              "name": "disposition",
-              "type": "datatype.integer",
-              "is_required": false,
-              "is_invisible": false
-            },
-            "unique_name": "variable_workflow_0209O0384L2HL79MKMU0X77dYaFIFrtDckP",
-            "object_type": "variable_workflow"
-          },
-          {
-            "schema_id": "datatype.integer",
-            "properties": {
-              "value": 90,
-              "scope": "input",
-              "name": "Days Timespan",
-              "type": "datatype.integer",
-              "is_required": false,
-              "is_invisible": false
-            },
-            "unique_name": "variable_workflow_0209O0384KP9D3v8WbEmUK4xhOant7WOfS3",
-            "object_type": "variable_workflow"
-          },
-          {
-            "schema_id": "datatype.string",
-            "properties": {
-              "value": "high",
-              "scope": "input",
-              "name": "confidence",
-              "type": "datatype.string",
-              "is_required": false,
-              "is_invisible": false
-            },
-            "unique_name": "variable_workflow_0209O0384JBJL1zGw1LokdAPOSFqmINazjY",
             "object_type": "variable_workflow"
           },
           {
@@ -1899,12 +1792,90 @@
             "properties": {
               "value": "",
               "scope": "input",
+              "name": "disposition_name",
+              "type": "datatype.string",
+              "is_required": true,
+              "is_invisible": false
+            },
+            "unique_name": "variable_workflow_0209O0384J4RY1pUk1w4FxSOBSUFWIlJUoj",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "input",
+              "name": "private_intel_group",
+              "type": "datatype.string",
+              "is_required": true,
+              "is_invisible": false
+            },
+            "unique_name": "variable_workflow_0209O0384IBIP7FLf8uNmcBdz2dAHDxFKEC",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.integer",
+            "properties": {
+              "value": 90,
+              "scope": "input",
+              "name": "Days Timespan",
+              "type": "datatype.integer",
+              "is_required": false,
+              "is_invisible": false
+            },
+            "unique_name": "variable_workflow_0209O0384KP9D3v8WbEmUK4xhOant7WOfS3",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "input",
+              "name": "observable_type",
+              "type": "datatype.string",
+              "is_required": true,
+              "is_invisible": false
+            },
+            "unique_name": "variable_workflow_0209O0384JQEL6YwGc04mAwjV6eXbmvkTOm",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "white",
+              "scope": "input",
+              "name": "tlp",
+              "type": "datatype.string",
+              "is_required": false,
+              "is_invisible": false
+            },
+            "unique_name": "variable_workflow_0209O0384JY6T1BgZioCCeLZ9HfuaP18HGa",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "input",
               "name": "observable_value",
               "type": "datatype.string",
               "is_required": true,
               "is_invisible": false
             },
             "unique_name": "variable_workflow_0209O0384JIHT4rTbO3zWHGTKaAyePU8nZr",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.date",
+            "properties": {
+              "value": "0001-01-01T00:00:00+00:00",
+              "scope": "local",
+              "name": "Timestamp",
+              "type": "datatype.date",
+              "is_required": false,
+              "is_invisible": false
+            },
+            "unique_name": "variable_workflow_0209O0384KHD80O3Ya4xHrildFfagV0wMMN",
             "object_type": "variable_workflow"
           }
         ],
